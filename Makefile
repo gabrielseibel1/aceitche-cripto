@@ -1,15 +1,19 @@
 ONESHELL:
 .SHELL := /bin/bash
 
+WEBSITE_CONTENT = /var/www/html/aceitchecripto.com/
+SITES_ENABLED = /etc/nginx/sites-enabled/
+
+
 deps :
 	apt install -y fail2ban ufw git nginx
 
 website : nginx deps
 	# alocate repo files in host fs
-	test ! -d /var/www/html/aceitchecripto.com/ && mkdir -p /var/www/html/aceitchecripto.com/
-	cp -f index.html /var/www/html/aceitchecripto.com/
-	cp -f nginx/aceitchecripto.com /etc/nginx/sites-enabled/
-	cp -f nginx/pay.aceitchecripto.com  /etc/nginx/sites-enabled/
+	test ! -d "$(WEBSITE_CONTENT)" && mkdir -p "$(WEBSITE_CONTENT)" || true
+	cp -f index.html "$(WEBSITE_CONTENT)"
+	cp -f nginx/aceitchecripto.com "$(SITES_ENABLED)"
+	cp -f nginx/pay.aceitchecripto.com "$(SITES_ENABLED)"
 	cp -f nginx/nginx.conf /etc/nginx/
 	service nginx reload
 
