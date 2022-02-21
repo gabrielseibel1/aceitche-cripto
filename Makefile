@@ -3,22 +3,30 @@ ONESHELL:
 
 WEBSITE_CONTENT = /var/www/html/aceitchecripto.com/
 SITES_ENABLED = /etc/nginx/sites-enabled/
-
+FAKE_SSL = fakessl.conf
 
 deps :
-	apt install -y fail2ban ufw git nginx
+	apt install -y fail2ban ufw git nginx openssl
+
+localhost_certs : 
+	openssl req -x509 -nodes -days 1024 -newkey rsa:2048 \
+		-extensions 'v3_req' -config fake_ssl.conf \
+		-keyout /etc/ssl/private/localhost.key \
+		-out /etc/ssl/certs/localhost.crt
 
 website : nginx deps
 	# alocate repo files in host fs
 	test ! -d "$(WEBSITE_CONTENT)" && mkdir -p "$(WEBSITE_CONTENT)" || true
 	cp -f index.html "$(WEBSITE_CONTENT)"
 	cp -f nginx/aceitchecripto.com "$(SITES_ENABLED)"
-	cp -f nginx/pay.aceitchecripto.com "$(SITES_ENABLED)"
-	cp -f nginx/nginx.conf /etc/nginx/
 	service nginx reload
 
 payserver : btcpay deps
-	# Set parameters to run btcpay-setup.sh
+	# alocate repo files in host fs
+	cp -f nginx/pay.aceitchecripto.com "$(SITES_ENABLED)"
+	cp -f nginx/nginx.conf /etc/nginx/
+	service nginx reload
+	# set parameters to run btcpay-setup.sh
 	export BTCPAY_HOST="pay.aceitchecripto.com"
 	export REVERSEPROXY_DEFAULT_HOST="pay.aceitchecripto.com"
 	export REVERSEPROXY_HTTP_PORT=10080
@@ -30,7 +38,7 @@ payserver : btcpay deps
 	export BTCPAYGEN_LIGHTNING="clightning"
 	export BTCPAY_ENABLE_SSH=true
 	export BTCPAYGEN_EXCLUDE_FRAGMENTS="nginx-https"
-	# Clone the BPS repo and run setup
+	# clone the BPS repo and run setup
 	test -d btcpayserver-docker && rm -rf btcpayserver-docker
 	git clone https://github.com/btcpayserver/btcpayserver-docker
 	cd btcpayserver-docker
