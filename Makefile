@@ -3,21 +3,21 @@ ONESHELL:
 
 WEBSITE_CONTENT = /var/www/html/aceitchecripto.com/
 SITES_ENABLED = /etc/nginx/sites-enabled/
-FAKE_SSL = fakessl.conf
 
 deps :
 	apt install -y fail2ban ufw git nginx openssl
 
 localhost_certs : 
 	openssl req -x509 -nodes -days 1024 -newkey rsa:2048 \
-		-extensions 'v3_req' -config fake_ssl.conf \
+		-extensions 'v3_req' -config nginx/fakessl.conf \
 		-keyout /etc/ssl/private/localhost.key \
 		-out /etc/ssl/certs/localhost.crt
 
 website : nginx deps
 	# alocate repo files in host fs
 	test ! -d "$(WEBSITE_CONTENT)" && mkdir -p "$(WEBSITE_CONTENT)" || true
-	cp -f index.html index.css "$(WEBSITE_CONTENT)"
+	cp -rf src "$(WEBSITE_CONTENT)"
+	cp -rf img "$(WEBSITE_CONTENT)"
 	cp -f nginx/aceitchecripto.com "$(SITES_ENABLED)"
 	service nginx reload
 

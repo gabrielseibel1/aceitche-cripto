@@ -1,0 +1,56 @@
+* {
+  font-family: Fira Sans;
+}
+
+body {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 25px;
+}
+
+h1,
+h2,
+.centertext {
+  text-align: center;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.column {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.hero {
+    width: 250px;
+    height: 250px;
+}
+
+.row_element {
+  margin: 4%;
+}
+
+@media (max-width: 1000px) {
+  .row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero {
+      width: 500px;
+      height: 500px;
+  }
+}
