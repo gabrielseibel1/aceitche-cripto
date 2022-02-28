@@ -19,6 +19,7 @@ website : nginx deps
 	cp -rf src "$(WEBSITE_CONTENT)"
 	cp -rf img "$(WEBSITE_CONTENT)"
 	cp -f nginx/aceitchecripto.com "$(SITES_ENABLED)"
+	cp -f nginx/consult.aceitchecripto.com "$(SITES_ENABLED)"
 	service nginx reload
 
 payserver : deps
