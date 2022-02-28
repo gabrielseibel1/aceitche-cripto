@@ -34,12 +34,8 @@ h2,
 }
 
 .hero {
-    width: 250px;
-    height: 250px;
-}
-
-.row_element {
-  margin: 4%;
+  width: 250px;
+  height: 250px;
 }
 
 @media (max-width: 1000px) {
@@ -50,7 +46,26 @@ h2,
   }
 
   .hero {
-      width: 500px;
-      height: 500px;
+    width: 500px;
+    height: 500px;
   }
+}
+
+.row_element {
+  margin: 4%;
+}
+
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.toolbar_row_element {
+  margin: 0 5% 5% 5%;
+}
+
+.toolbar_button {
+  margin-left: 5%;
 }
