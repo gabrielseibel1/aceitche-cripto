@@ -43,9 +43,7 @@ h2,
 
 .hero {
   max-width: 300px;
-}
-
-.row_element {
+  vertical-align: middle;
   margin: 24px;
 }
 
