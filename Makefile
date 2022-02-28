@@ -1,5 +1,5 @@
-ONESHELL:
-.SHELL := /bin/bash
+.ONESHELL:
+SHELL = /usr/bin/bash
 
 WEBSITE_CONTENT = /var/www/html/aceitchecripto.com/
 SITES_ENABLED = /etc/nginx/sites-enabled/
@@ -21,7 +21,7 @@ website : nginx deps
 	cp -f nginx/aceitchecripto.com "$(SITES_ENABLED)"
 	service nginx reload
 
-payserver : btcpay deps
+payserver : deps
 	# alocate repo files in host fs
 	cp -f nginx/pay.aceitchecripto.com "$(SITES_ENABLED)"
 	cp -f nginx/nginx.conf /etc/nginx/
@@ -39,9 +39,11 @@ payserver : btcpay deps
 	export BTCPAY_ENABLE_SSH=true
 	export BTCPAYGEN_EXCLUDE_FRAGMENTS="nginx-https"
 	# clone the BPS repo and run setup
-	test -d btcpayserver-docker && rm -rf btcpayserver-docker
-	git clone https://github.com/btcpayserver/btcpayserver-docker
+	test ! -d btcpayserver-docker && git clone https://github.com/btcpayserver/btcpayserver-docker || true
 	cd btcpayserver-docker
+	ls
+	chmod +x btcpay-setup.sh
+	git pull
 	. ./btcpay-setup.sh -i
 	cd ..
 
