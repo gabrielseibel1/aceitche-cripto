@@ -71,9 +71,9 @@ h2,
 }
 
 .nav_li a:hover {
-  background-color: #ff4f00;
+  background-color: #f8931a;
 }
 
-.active {
+.highlight {
   background-color: #ff4f00;
 }

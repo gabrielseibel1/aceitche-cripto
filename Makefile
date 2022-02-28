@@ -41,8 +41,6 @@ payserver : deps
 	# clone the BPS repo and run setup
 	test ! -d btcpayserver-docker && git clone https://github.com/btcpayserver/btcpayserver-docker || true
 	cd btcpayserver-docker
-	ls
-	chmod +x btcpay-setup.sh
 	git pull
 	. ./btcpay-setup.sh -i
 	cd ..
