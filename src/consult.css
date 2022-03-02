@@ -1,0 +1,15 @@
+form {
+  width: 80%;
+  max-width: 300px;
+  margin: 25px;
+}
+
+input, textarea{
+  width: 100%;
+  display: inline-block;
+  margin: 10px;
+}
+
+input[type="submit"] {
+  width: 100px;
+}

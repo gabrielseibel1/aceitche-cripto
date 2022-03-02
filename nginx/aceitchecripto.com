@@ -1,6 +1,6 @@
 server {
         root /var/www/html/aceitchecripto.com;
-        index src/index.html;
+        index index.html;
 
         # Put your domain name here
         server_name aceitchecripto.com;

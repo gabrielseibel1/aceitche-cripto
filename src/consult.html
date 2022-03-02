@@ -1,37 +1,69 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <html>
 
 <head>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="consult.css">
+
     <title>
         Consultoria
     </title>
+
 </head>
 
 <body>
 
-    Para agendar uma consultoria, entre em contato pelo <a href="https://instagram.com/aceitche_cripto">Instagram</a> ou preencha os campos abaixo para requisitar um horário. Retornaremos seu contato por telefone ou email. A consultoria tem a duração média de de uma hora.
+    <ul class="nav">
+        <li class="nav_li">
+            <a href="/">
+                <b><i>AceiTche</i></b>
+            </a>
+        </li>
+        <!-- float: right makes order get reversed -->
+        <li class="nav_li" style="float: right;">
+            <a href="pay">
+                Login
+            </a>
+        </li>
+        <li class="nav_li highlight" style="float: right;">
+            <a href="consult.html">
+                Consultoria
+            </a>
+        </li>
+    </ul>
 
-    <h1>
-        <form action="/free_time" method="post">
+    <div class="content center">
+        <p>
+            Para agendar uma consultoria, entre em contato pelo <a
+                href="https://instagram.com/aceitche_cripto">Instagram</a> ou
+            preencha os campos abaixo para requisitar um horário.
+        </p>
+        <p>
+            Retornaremos seu contato por telefone ou email. A
+            consultoria
+            tem a duração média de de uma hora.
+        </p>
+        <form class="center" action="/free_time" method="post">
             <label for="tel">Telefone:</label>
             <input id="tel" type="tel" required>
-            
+
             <label for="email">Email:</label>
             <input id="email" type="email" required>
-            
+
             <label for="date">Data:</label>
             <input id="date" type="date" required>
-            
+
             <label for="time">Horário:</label>
             <input id="time" type="time">
-            
+
             <label for="goals">Observação (objetivos, motivação etc.):</label>
-            <input id="goals" type="text">
-            
+            <textarea id="goals" rows="5"></textarea>
+
             <input type="submit" value="Enviar">
         </form>
-    </h1>
+    </div>
 </body>
 
 </html>
