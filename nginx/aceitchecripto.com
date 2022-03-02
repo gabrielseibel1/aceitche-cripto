@@ -8,6 +8,15 @@ server {
     location /img/ {
     }
 
+    location /free_time {
+        add_header Content-Type text/plain;
+        return 200 "received form";
+    }
+
+    location /pay {
+        rewrite ^ https://pay.aceitchecripto.com; # TODO make this localhost-friendly?
+    }
+
     listen 443 ssl; # managed by Certbot
     ssl_certificate /etc/letsencrypt/live/aceitchecripto.com/fullchain.pem; # managed by Certbot
     ssl_certificate_key /etc/letsencrypt/live/aceitchecripto.com/privkey.pem; # managed by Certbot
