@@ -16,7 +16,8 @@ localhost_certs :
 website : nginx deps
 	# alocate repo files in host fs
 	test ! -d "$(WEBSITE_CONTENT)" && mkdir -p "$(WEBSITE_CONTENT)" || true
-	cp -rf src/* "$(WEBSITE_CONTENT)"/
+	cp -rf src/html/* "$(WEBSITE_CONTENT)"/
+	cp -rf src/css/* "$(WEBSITE_CONTENT)"/
 	cp -rf img "$(WEBSITE_CONTENT)"
 	cp -f nginx/aceitchecripto.com "$(SITES_ENABLED)"
 	service nginx reload
