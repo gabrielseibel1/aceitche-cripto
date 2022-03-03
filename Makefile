@@ -4,16 +4,7 @@ SHELL = /usr/bin/bash
 WEBSITE_CONTENT = /var/www/html/aceitchecripto.com/
 SITES_ENABLED = /etc/nginx/sites-enabled/
 
-deps :
-	apt install -y fail2ban ufw git nginx openssl
-
-localhost_certs : 
-	openssl req -x509 -nodes -days 1024 -newkey rsa:2048 \
-		-extensions 'v3_req' -config nginx/fakessl.conf \
-		-keyout /etc/ssl/private/localhost.key \
-		-out /etc/ssl/certs/localhost.crt
-
-website : nginx deps
+frontend : nginx deps
 	# alocate repo files in host fs
 	test ! -d "$(WEBSITE_CONTENT)" && mkdir -p "$(WEBSITE_CONTENT)" || true
 	cp -rf src/html/* "$(WEBSITE_CONTENT)"/
@@ -46,4 +37,11 @@ payserver : deps
 	. ./btcpay-setup.sh -i
 	cd ..
 
-install : website payserver
+deps :
+	apt install -y fail2ban ufw git nginx openssl
+
+localhost_certs : 
+	openssl req -x509 -nodes -days 1024 -newkey rsa:2048 \
+		-extensions 'v3_req' -config nginx/fakessl.conf \
+		-keyout /etc/ssl/private/localhost.key \
+		-out /etc/ssl/certs/localhost.crt

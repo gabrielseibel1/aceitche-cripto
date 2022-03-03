@@ -45,21 +45,24 @@
             consultoria
             tem a duração média de de uma hora.
         </p>
-        <form class="center" action="/free_time" method="post">
+        <form class="center" action="/service/free_time" method="post">
+            <label for="name">Nome:</label>
+            <input name="name" id="name" type="text" required>
+            
             <label for="tel">Telefone:</label>
-            <input id="tel" type="tel" required>
+            <input name="tel" id="tel" type="tel" required>
 
             <label for="email">Email:</label>
-            <input id="email" type="email" required>
+            <input name="email" id="email" type="email" required>
 
             <label for="date">Data:</label>
-            <input id="date" type="date" required>
+            <input name="date" id="date" type="date" required>
 
             <label for="time">Horário:</label>
-            <input id="time" type="time">
+            <input name="time" id="time" type="time">
 
             <label for="goals">Observação (objetivos, motivação etc.):</label>
-            <textarea id="goals" rows="5"></textarea>
+            <textarea name="goals" id="goals" rows="5"></textarea>
 
             <input type="submit" value="Enviar">
         </form>
