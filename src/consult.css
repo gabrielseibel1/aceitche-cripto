@@ -1,10 +1,11 @@
 form {
   width: 80%;
   max-width: 300px;
-  margin: 25px;
+  margin: 50px;
 }
 
-input, textarea{
+input,
+textarea {
   width: 100%;
   display: inline-block;
   margin: 10px;
