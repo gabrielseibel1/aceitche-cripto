@@ -43,14 +43,14 @@
         <p>
             Retornaremos seu contato por telefone ou email. A
             consultoria
-            tem a duração média de de uma hora.
+            tem a duração média de uma hora.
         </p>
         <form class="center" action="/service/free_time" method="post">
             <label for="name">Nome:</label>
             <input name="name" id="name" type="text" required>
-            
-            <label for="tel">Telefone:</label>
-            <input name="tel" id="tel" type="tel" required>
+
+            <label for="phone">Telefone:</label>
+            <input name="phone" id="phone" type="tel" required>
 
             <label for="email">Email:</label>
             <input name="email" id="email" type="email" required>
@@ -59,10 +59,10 @@
             <input name="date" id="date" type="date" required>
 
             <label for="time">Horário:</label>
-            <input name="time" id="time" type="time">
+            <input name="time" id="time" type="time" required>
 
-            <label for="goals">Observação (objetivos, motivação etc.):</label>
-            <textarea name="goals" id="goals" rows="5"></textarea>
+            <label for="comment">Observação (objetivos, motivação etc.):</label>
+            <textarea name="comment" id="comment" rows="5"></textarea>
 
             <input type="submit" value="Enviar">
         </form>
