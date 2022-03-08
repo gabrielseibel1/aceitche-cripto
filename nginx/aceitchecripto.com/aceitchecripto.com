@@ -1,6 +1,6 @@
 server {
-        # Put your domain name here
-        server_name aceitchecripto.com;
+    # Put your domain name here
+    server_name aceitchecripto.com;
 
     location / {
         proxy_pass http://127.0.0.1:8080/;
@@ -15,9 +15,6 @@ server {
     ssl_certificate_key /etc/letsencrypt/live/aceitchecripto.com/privkey.pem; # managed by Certbot
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
-
-    #ssl_certificate /etc/ssl/certs/localhost.crt;
-    #ssl_certificate_key /etc/ssl/private/localhost.key;
 }
 
 server {
@@ -25,6 +22,6 @@ server {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
-        listen 80;
-        server_name aceitchecripto.com;
+    listen 80;
+    server_name aceitchecripto.com;
 }

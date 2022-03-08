@@ -3,11 +3,10 @@ SHELL = /usr/bin/bash
 
 SITES_ENABLED = /etc/nginx/sites-enabled/
 
+docker_nginx:
+	docker build -t aceitche-cripto-nginx ./nginx
+
 install : nginx deps
-	cp -f nginx/aceitchecripto.com "$(SITES_ENABLED)"
-	cp -f nginx/pay.aceitchecripto.com "$(SITES_ENABLED)"
-	cp -f nginx/nginx.conf /etc/nginx/
-	service nginx reload
 	# set parameters to run btcpay-setup.sh
 	export BTCPAY_HOST="pay.aceitchecripto.com"
 	export REVERSEPROXY_DEFAULT_HOST="pay.aceitchecripto.com"
@@ -28,10 +27,12 @@ install : nginx deps
 	cd ..
 
 deps :
-	apt install -y fail2ban ufw git nginx openssl
+	apt install -y docker fail2ban ufw git openssl
 
-localhost_certs : 
+localhost_ssl : 
 	openssl req -x509 -nodes -days 1024 -newkey rsa:2048 \
-		-extensions 'v3_req' -config nginx/fakessl.conf \
-		-keyout /etc/ssl/private/localhost.key \
-		-out /etc/ssl/certs/localhost.crt
+		-extensions 'v3_req' -config nginx/ssl/openssl.conf \
+		-keyout nginx/aceitchecripto.com/ssl/key.pem \
+		-out nginx/aceitchecripto.com/ssl/crt.pem 
+	openssl dhparam -out nginx/ssl/dhparams.pem 2048
+	cp -r nginx/aceitchecripto.com/ssl/* nginx/pay.aceitchecripto.com/ssl/
