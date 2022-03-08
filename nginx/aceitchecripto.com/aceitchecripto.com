@@ -3,7 +3,7 @@ server {
     server_name aceitchecripto.com;
 
     location / {
-        proxy_pass http://aceitchecripto-app:8080/;
+        proxy_pass http://aceitchecripto-app:8081/;
     }
 
     location /pay {

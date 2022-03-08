@@ -18,7 +18,7 @@ sudo cp /etc/letsencrypt/live/aceitchecripto.com/fullchain.pem nginx/ssl/cert.pe
 sudo cp /etc/letsencrypt/live/pay.aceitchecripto.com/privkey.pem nginx/ssl/key.pem
 sudo cp /etc/letsencrypt/live/pay.aceitchecripto.com/fullchain.pem nginx/ssl/cert.pem
 
-docker-compose up -d
+docker-compose up -d --build --force-recreate
 make payserver
 ```
 
