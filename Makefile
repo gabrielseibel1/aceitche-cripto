@@ -3,8 +3,13 @@ SHELL = /usr/bin/bash
 
 SITES_ENABLED = /etc/nginx/sites-enabled/
 
-containers :
+docker_net :
+	docker network create aceitchecripto-net
+
+nginx_container :
 	docker build -t aceitchecripto-nginx ./nginx
+
+app_container :
 	docker build -t aceitchecripto-app .
 
 payserver : deps
