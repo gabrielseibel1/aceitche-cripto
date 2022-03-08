@@ -19,12 +19,9 @@ sudo cp /etc/letsencrypt/live/pay.aceitchecripto.com/fullchain.pem nginx/ssl/cer
 # optionally make fake certs
 make localhost_ssl
 
-make docker_nginx
+make containers
 docker run -p 80:80 -p 443:443 -d aceitche-cripto-nginx
-
-# run backend
-cargo run
-
+docker run -p 8080:8080 -d aceitche-cripto-server
 make payserver
 ```
 

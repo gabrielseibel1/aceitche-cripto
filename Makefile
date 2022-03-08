@@ -3,10 +3,11 @@ SHELL = /usr/bin/bash
 
 SITES_ENABLED = /etc/nginx/sites-enabled/
 
-docker_nginx:
-	docker build -t aceitche-cripto-nginx ./nginx
+containers :
+	docker build -t aceitchecripto-nginx ./nginx
+	docker build -t aceitchecripto-app .
 
-install : nginx deps
+payserver : deps
 	# set parameters to run btcpay-setup.sh
 	export BTCPAY_HOST="pay.aceitchecripto.com"
 	export REVERSEPROXY_DEFAULT_HOST="pay.aceitchecripto.com"

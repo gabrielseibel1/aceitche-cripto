@@ -10,10 +10,10 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .route("/api/version", web::get().to(version::get))
             .route("/api/free_time", web::post().to(free_time::registrer_free_time))
-            .service(Files::new("/img", "./img"))
-            .service(Files::new("/", "./src/frontend").index_file("index.html"))
+            .service(Files::new("/img", "/var/img"))
+            .service(Files::new("/", "/var/src").index_file("index.html"))
     })
-    .bind(("127.0.0.1", 8080))?
+    .bind(("0.0.0.0", 8080))?
     .run()
     .await
 }
