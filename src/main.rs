@@ -1,4 +1,5 @@
 use actix_web::{web, App, HttpServer};
+use actix_files::Files;
 
 mod free_time;
 mod version;
@@ -7,8 +8,10 @@ mod version;
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         App::new()
-            .route("/version", web::get().to(version::get))
-            .route("/free_time", web::post().to(free_time::registrer_free_time))
+            .route("/api/version", web::get().to(version::get))
+            .route("/api/free_time", web::post().to(free_time::registrer_free_time))
+            .service(Files::new("/img", "./img"))
+            .service(Files::new("/", "./src/frontend").index_file("index.html"))
     })
     .bind(("127.0.0.1", 8080))?
     .run()

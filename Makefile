@@ -1,20 +1,10 @@
 .ONESHELL:
 SHELL = /usr/bin/bash
 
-WEBSITE_CONTENT = /var/www/html/aceitchecripto.com/
 SITES_ENABLED = /etc/nginx/sites-enabled/
 
-frontend : nginx deps
-	# alocate repo files in host fs
-	test ! -d "$(WEBSITE_CONTENT)" && mkdir -p "$(WEBSITE_CONTENT)" || true
-	cp -rf src/html/* "$(WEBSITE_CONTENT)"/
-	cp -rf src/css/* "$(WEBSITE_CONTENT)"/
-	cp -rf img "$(WEBSITE_CONTENT)"
+install : nginx deps
 	cp -f nginx/aceitchecripto.com "$(SITES_ENABLED)"
-	service nginx reload
-
-payserver : deps
-	# alocate repo files in host fs
 	cp -f nginx/pay.aceitchecripto.com "$(SITES_ENABLED)"
 	cp -f nginx/nginx.conf /etc/nginx/
 	service nginx reload

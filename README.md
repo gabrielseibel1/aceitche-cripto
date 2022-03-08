@@ -9,16 +9,9 @@ If you're a developer running this project, you can build and install it as foll
 ```
 # for local setups. must adapt nginx sites with comments
 sudo make localhost_certs 
-
-# build and run backend
-cargo build --release
-sudo killall aceitche-cripto || true
-./target/release/aceitche-cripto &
-
-# configure and enable frontend
-sudo make frontend
-
-# configure and run BTCPay Server
-sudo make payserver
+# setup nginx and payserver
+sudo make install
+# run backend
+cargo run
 ```
 

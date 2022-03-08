@@ -1,16 +1,9 @@
 server {
-        root /var/www/html/aceitchecripto.com;
-        index index.html;
-
         # Put your domain name here
         server_name aceitchecripto.com;
 
-    location /img/ {
-    }
-
-    location /free_time {
-        add_header Content-Type text/plain;
-        return 200 "received form";
+    location / {
+        proxy_pass http://127.0.0.1:8080/;
     }
 
     location /pay {

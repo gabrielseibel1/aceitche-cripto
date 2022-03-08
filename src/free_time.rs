@@ -31,7 +31,7 @@ pub async fn registrer_free_time(form: web::Form<FreeTimeForm>) -> impl Responde
         datetime: Utc.datetime_from_str(
             &format!("{} {}:00", form.date.clone(), form.time.clone()), "%F %T"
         ).expect(
-            &format!("date: {}, time: {}.", form.date, form.time) //use HTTP error instead 
+            &format!("date: {}, time: {}.", form.date, form.time) //TODO use HTTP error instead 
         ),
         comment: form.comment.clone(),
     };
