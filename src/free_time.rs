@@ -26,7 +26,6 @@ pub async fn registrer_free_time(
     db_pool: web::Data<Pool>,
     form: web::Form<FreeTimeForm>,
 ) -> impl Responder {
-
     let ft = FreeTime {
         customer: form.name.clone(),
         phone: form.phone.clone(),
@@ -42,5 +41,24 @@ pub async fn registrer_free_time(
         comment: form.comment.clone(),
     };
 
+    let client = db_pool.get().await.expect("Database pool is not available");
+
+    let stmt = client
+        .prepare(
+            r#"
+        insert into "customer" ("name", "phone", "email") 
+        values ($1, $2, $3)
+        "#,
+        )
+        .await
+        .expect("statement could net be prepared");
+
+    let rows_modified = client
+        .execute(&stmt, &[&ft.customer, &ft.phone, &ft.email])
+        .await
+        .expect("query failed");
+    
+    assert_eq!(rows_modified, 1);
+    
     HttpResponse::Ok().json(ft) // <- send response
 }
