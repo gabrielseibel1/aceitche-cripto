@@ -1,13 +1,20 @@
 [package]
 name = "aceitche-cripto"
 version = "0.2.0"
-edition = "2018"
+edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 actix-web = "4"
 actix-files = "0"
-serde = { version = "1.0", features = ["derive"] }
-serde_json = { version = "1.0" }
 chrono = { version = "0", features = ["serde"] }
+config = "0.12"
+derive_more = "0.99"
+deadpool-postgres = { version = "0.10.1", features = ["serde"] }
+dotenv = "0.15.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio-pg-mapper = "0.2"
+tokio-pg-mapper-derive = "0.2"
+tokio-postgres = "0.7.5"
