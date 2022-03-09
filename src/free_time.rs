@@ -56,7 +56,7 @@ pub async fn registrer_free_time(
     let rows_modified = client
         .execute(&stmt, &[&ft.customer, &ft.phone, &ft.email])
         .await
-        .expect("query failed");
+        .expect("query failed"); // TODO handle this as corresponding http error
     
     assert_eq!(rows_modified, 1);
     
