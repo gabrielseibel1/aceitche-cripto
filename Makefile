@@ -24,7 +24,7 @@ payserver : deps
 	cd ..
 
 deps :
-	apt install -y docker fail2ban ufw git openssl
+	apt install -y docker docker-compose git openssl
 
 localhost_ssl : 
 	openssl req -x509 -nodes -days 1024 -newkey rsa:2048 \

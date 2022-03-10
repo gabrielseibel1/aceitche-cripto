@@ -7,6 +7,8 @@ A website to help people and businesses accept crypto payments, [aceitchecripto.
 If you're a developer running this project, you can build and install it as follows:
 
 ```
+sudo make deps
+
 # run this once for local setups ssl
 # copy existing ssl files to nginx folders (example)
 # optionally make fake certs
