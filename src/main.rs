@@ -4,8 +4,12 @@ use dotenv::dotenv;
 use tokio_postgres::NoTls;
 
 mod app_config;
-mod free_time;
+mod handlers;
 mod version;
+mod data;
+mod db;
+mod actions;
+
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -23,7 +27,7 @@ async fn main() -> std::io::Result<()> {
             .route("/api/version", web::get().to(version::get))
             .route(
                 "/api/free_time",
-                web::post().to(free_time::registrer_free_time),
+                web::post().to(handlers::handle_free_time_form),
             )
             .service(Files::new("/img", "/var/img"))
             .service(Files::new("/", "/var/src").index_file("index.html"))

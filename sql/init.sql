@@ -4,23 +4,23 @@ drop table if exists scheduled_appointment;
 
 create table customer
 (
-    id serial primary key,
-    name varchar(100) not null,
-    email varchar(100) not null unique,
-    phone varchar(100) not null unique
+    email varchar(100) primary key,
+    phone varchar(100) not null unique,
+    name varchar(100) not null
 );
 
 create table candidate_appointment
 (
     id serial primary key,
-    date_time timestamp not null,
-    customer_id serial references customer(id) not null,
-    unique (date_time, customer_id)
+    date_time timestamp with time zone not null,
+    customer_email varchar(100) references customer(email) not null,
+    comment varchar(200),
+    unique (date_time, customer_email)
 );
 
 create table scheduled_appointment
 (
-    id serial primary key,
-    date_time timestamp not null unique,
-    customer_id serial references customer(id) not null
+    date_time timestamp with time zone primary key,
+    customer_email varchar(100) references customer(email) not null,
+    comment varchar(200)
 );
