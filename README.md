@@ -15,10 +15,10 @@ sudo make deps
 make localhost_ssl
 sudo cp /etc/letsencrypt/ssl-dhparams.pem nginx/ssl/dhparams.pem
 sudo cp /etc/letsencrypt/options-ssl-nginx.conf nginx/ssl/ssl_options.conf
-sudo cp /etc/letsencrypt/live/aceitchecripto.com/privkey.pem nginx/ssl/key.pem
-sudo cp /etc/letsencrypt/live/aceitchecripto.com/fullchain.pem nginx/ssl/cert.pem
-sudo cp /etc/letsencrypt/live/pay.aceitchecripto.com/privkey.pem nginx/ssl/key.pem
-sudo cp /etc/letsencrypt/live/pay.aceitchecripto.com/fullchain.pem nginx/ssl/cert.pem
+sudo cp /etc/letsencrypt/live/aceitchecripto.com/privkey.pem nginx/aceitchecripto.com/ssl/key.pem
+sudo cp /etc/letsencrypt/live/aceitchecripto.com/fullchain.pem nginx/aceitchecripto.com/ssl/cert.pem
+sudo cp /etc/letsencrypt/live/pay.aceitchecripto.com/privkey.pem nginx/pay.aceitchecripto.com/ssl/key.pem
+sudo cp /etc/letsencrypt/live/pay.aceitchecripto.com/fullchain.pem nginx/pay.aceitchecripto.com/ssl/cert.pem
 
 sudo docker-compose up -d --build --force-recreate
 make payserver

@@ -1,4 +1,4 @@
 .env
 /target
-/nginx/aceitchecripto.com/ssl
-/nginx/pay.aceitchecripto.com/ssl
+*crt.pem
+*key.pem
