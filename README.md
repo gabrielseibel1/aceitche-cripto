@@ -20,6 +20,16 @@ sudo cp /etc/letsencrypt/live/aceitchecripto.com/fullchain.pem nginx/aceitchecri
 sudo cp /etc/letsencrypt/live/pay.aceitchecripto.com/privkey.pem nginx/pay.aceitchecripto.com/ssl/key.pem
 sudo cp /etc/letsencrypt/live/pay.aceitchecripto.com/fullchain.pem nginx/pay.aceitchecripto.com/ssl/crt.pem
 
+## create .env file as follows:
+# ADDRESS=0.0.0.0:8081
+# PG__DBNAME="..."
+# PG__HOST=aceitchecripto-psql
+# PG__PORT=5432
+# PG__USER="..."
+# PG__PASSWORD="..."
+# POSTGRES_USER="..."
+# POSTGRES_PASSWORD="..."
+
 sudo docker-compose up -d --build --force-recreate
 make payserver
 ```

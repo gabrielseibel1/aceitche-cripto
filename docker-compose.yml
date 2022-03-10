@@ -17,8 +17,7 @@ services:
     restart: always
     ports:
       - 5432:5432
-    environment:
-      POSTGRES_PASSWORD: example
+    env_file: .env
 
   aceitchecripto-adminer:
     image: adminer
