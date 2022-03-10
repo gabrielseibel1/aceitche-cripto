@@ -10,6 +10,10 @@ server {
         rewrite ^ https://pay.aceitchecripto.com; # TODO make this localhost-friendly?
     }
 
+    location /adminer/ {
+        proxy_pass http://aceitchecripto-adminer:8080/;
+    }
+
     listen 443 ssl; # managed by Certbot
     ssl_certificate /etc/letsencrypt/live/aceitchecripto.com/fullchain.pem; # managed by Certbot
     ssl_certificate_key /etc/letsencrypt/live/aceitchecripto.com/privkey.pem; # managed by Certbot
