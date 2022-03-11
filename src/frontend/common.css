@@ -57,3 +57,7 @@ h2,
 .highlight {
   background-color: #ff4f00;
 }
+
+.comm-channels {
+  list-style: none;
+}
