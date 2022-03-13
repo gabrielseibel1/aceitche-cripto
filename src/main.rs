@@ -29,8 +29,8 @@ async fn main() -> std::io::Result<()> {
                 "/api/free_time",
                 web::post().to(handlers::handle_free_time_form),
             )
-            .service(Files::new("/img", "/var/img"))
-            .service(Files::new("/", "/var/src").index_file("index.html"))
+            .service(Files::new("/img", "./img"))
+            .service(Files::new("/", "./src/frontend").index_file("index.html"))
     })
     .bind(app_config.address.clone())?
     .run()
