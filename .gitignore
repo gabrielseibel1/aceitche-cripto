@@ -1,4 +1,4 @@
-.env
+*.env
 /target
 *crt.pem
 *key.pem
