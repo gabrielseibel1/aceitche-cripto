@@ -3,7 +3,7 @@ server {
     server_name aceitchecripto.com;
 
     location / {
-        proxy_pass http://aceitchecripto-app:8081/;
+        proxy_pass http://127.0.0.1:8081/;
     }
 
     location /pay {
@@ -11,7 +11,7 @@ server {
     }
 
     location /adminer/ {
-        proxy_pass http://aceitchecripto-adminer:8080/;
+        proxy_pass http://127.0.0.1:8080/;
     }
 
     listen 443 ssl; # managed by Certbot
