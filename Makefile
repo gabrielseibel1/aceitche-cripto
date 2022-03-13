@@ -32,4 +32,4 @@ localhost_ssl :
 		-keyout nginx/aceitchecripto.com/ssl/key.pem \
 		-out nginx/aceitchecripto.com/ssl/crt.pem 
 	openssl dhparam -out nginx/ssl/dhparams.pem 2048
-	cp -r nginx/aceitchecripto.com/ssl nginx/pay.aceitchecripto.com/ssl
+	cp -r nginx/aceitchecripto.com/ssl nginx/pay.aceitchecripto.com/
