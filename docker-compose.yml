@@ -3,29 +3,24 @@ services:
   
   aceitchecripto-app:
     build: .
-    #ports:
-      #- 8081:8081
-    network_mode: host
+    ports:
+      - "8081:8081"
 
   aceitchecripto-nginx:
     build: ./nginx
-    #ports:
-      #- 80:80
-      #- 443:443
-    network_mode: host
-  
+    ports:
+      - "80:80"
+      - "443:443"
+
   aceitchecripto-psql:
     build: ./sql
     restart: always
-    #ports:
-      #- 5433:5433
-    command: -p 5433
-    env_file: .aceitchecripto.env
-    network_mode: host
+    ports:
+      - "5432:5432"
+    env_file: .env
 
   aceitchecripto-adminer:
     image: adminer
     restart: always
-    #ports:
-      #- 8080:8080
-    network_mode: host
+    ports:
+      - "8080:8080"
