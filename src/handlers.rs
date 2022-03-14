@@ -35,7 +35,9 @@ pub async fn handle_free_time_form(
     )
     .await
     {
-        None => HttpResponse::SeeOther().insert_header((actix_web::http::header::LOCATION, "/consult_received.html")).finish(),
+        None => HttpResponse::SeeOther()
+            .insert_header((actix_web::http::header::LOCATION, "/consult_received.html"))
+            .finish(),
         Some(err) => HttpResponse::InternalServerError()
             .body(format!("failed to register free time: {}", err.to_string())),
     }

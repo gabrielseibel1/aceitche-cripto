@@ -3,13 +3,12 @@ use actix_web::{web, App, HttpServer};
 use dotenv::dotenv;
 use tokio_postgres::NoTls;
 
+mod actions;
 mod app_config;
-mod handlers;
-mod version;
 mod data;
 mod db;
-mod actions;
-
+mod handlers;
+mod version;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {

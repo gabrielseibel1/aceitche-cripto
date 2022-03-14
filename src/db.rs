@@ -66,7 +66,7 @@ impl Db {
             .get()
             .await
             .map_err(|e| Error::new(ErrorKind::NotConnected, e))?;
-        
+
         let row = client
             .query_one(r#"select * from users where email = $1"#, &[&email])
             .await;

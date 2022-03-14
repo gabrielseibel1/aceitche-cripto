@@ -2,3 +2,4 @@
 /target
 *crt.pem
 *key.pem
+/.idea
