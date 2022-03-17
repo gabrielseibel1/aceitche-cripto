@@ -1,0 +1,68 @@
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: aceitchecripto-backend-service
+  name: aceitchecripto-backend-service
+  namespace: default
+
+spec:
+  selector:
+    app: aceitchecripto-backend # This references the name of the pod(s) this service will connect to.  If there is more than one replica the service will auto load balance.
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080  # Port things will connect to this service on.  This port can be different from the target port.  Think of the service like a NAT proxy.
+      targetPort: 8080  # Port the Pod is listening on.
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  labels:
+    app: aceitchecripto-backend
+  name: aceitchecripto-backend
+  namespace: default
+
+spec:
+  replicas: 2  # Number of Pods to run in this deployment.  In this case 2 copies.
+  selector:
+    matchLabels:
+      app: aceitchecripto-backend # Name of the Pod template below that this deployment is managing.
+  template:
+    metadata:
+      labels:
+        app: aceitchecripto-backend  # Name of the Pod.  This name is important because our service will reference it.
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: aceitchecripto-app
+          image: aceitchecripto/app:latest  # Use this image to create our pods from.
+          imagePullPolicy: IfNotPresent # The image by default will get pulled from Dockerhub if it is not local.
+          env:
+            - name: ADDRESS
+              value: "0.0.0.0:8080"
+            - name: PG__HOST
+              value: "aceitchecripto-psql-service"
+            - name: PG__PORT
+              value: "5432"
+            - name: PG__DBNAME
+              value: "postgres"
+            - name: PG__USER
+              valueFrom:
+                secretKeyRef:
+                  name: aceitchecripto-secret
+                  key: postgres_user
+                  optional: false # same as default; "aceitchecripto-secret" must exist
+                  # and include a key named "postgres_user"
+            - name: PG__PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: aceitchecripto-secret
+                  key: postgres_password
+                  optional: false # same as default; "aceitchecripto-secret" must exist
+                  # and include a key named "postgres_password"

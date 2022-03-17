@@ -33,7 +33,7 @@ pub async fn handle_free_time_form(
         datetime,
         form.comment.clone(),
     )
-    .await
+        .await
     {
         None => HttpResponse::SeeOther()
             .insert_header((actix_web::http::header::LOCATION, "/consult_received.html"))
@@ -41,4 +41,10 @@ pub async fn handle_free_time_form(
         Some(err) => HttpResponse::InternalServerError()
             .body(format!("failed to register free time: {}", err.to_string())),
     }
+}
+
+pub async fn handle_pay() -> impl Responder {
+    HttpResponse::SeeOther()
+        .insert_header((actix_web::http::header::LOCATION, "https://pay.aceitchecripto.com"))
+        .finish()
 }

@@ -19,7 +19,6 @@ RUN cargo build --release --bin aceitche-cripto
 FROM debian:bullseye-slim AS runtime
 WORKDIR aceitche-cripto
 COPY --from=builder /aceitche-cripto/target/release/aceitche-cripto /usr/local/bin
-COPY .env /aceitche-cripto/.env
 COPY src/frontend/* /aceitche-cripto/src/frontend/
 COPY img/* /aceitche-cripto/img/
 ENTRYPOINT ["/usr/local/bin/aceitche-cripto"]

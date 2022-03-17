@@ -4,3 +4,4 @@
 *key.pem
 /.idea
 /.vscode
+/manifest/secret.yml

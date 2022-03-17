@@ -1,11 +1,28 @@
 .ONESHELL:
 SHELL = /usr/bin/bash
 
-SITES_ENABLED = /etc/nginx/sites-enabled/
+all : images push cluster
 
-localhost_ssl :
-	openssl req -x509 -nodes -days 1024 -newkey rsa:2048 \
-		-extensions 'v3_req' -config nginx/ssl/openssl.conf \
-		-keyout nginx/ssl/key.pem \
-		-out nginx/ssl/crt.pem
-	openssl dhparam -out nginx/ssl/dhparams.pem 2048
+local : images minikube cluster
+
+images :
+	docker build -t aceitchecripto/app:latest .
+	docker build -t aceitchecripto/nginx:latest ./nginx
+	docker build -t aceitchecripto/psql:latest ./sql
+
+minikube :
+	minikube image load aceitchecripto/app:latest
+	minikube image load aceitchecripto/nginx:latest
+	minikube image load aceitchecripto/psql:latest
+
+push :
+	docker push aceitchecripto/app:latest
+	docker push aceitchecripto/app:nginx
+	docker push aceitchecripto/app:psql
+
+cluster :
+	kubectl apply -f manifest/secret.yml
+	kubectl apply -f manifest
+
+clean :
+	kubectl delete -f manifest
