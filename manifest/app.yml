@@ -1,16 +1,14 @@
----
-
 apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: aceitchecripto-backend-service
-  name: aceitchecripto-backend-service
+    app: aceitchecripto-app-service
+  name: aceitchecripto-app-service
   namespace: default
 
 spec:
   selector:
-    app: aceitchecripto-backend # This references the name of the pod(s) this service will connect to.  If there is more than one replica the service will auto load balance.
+    app: aceitchecripto-app # This references the name of the pod(s) this service will connect to.  If there is more than one replica the service will auto load balance.
   ports:
     - name: http
       protocol: TCP
@@ -24,19 +22,19 @@ kind: Deployment
 
 metadata:
   labels:
-    app: aceitchecripto-backend
-  name: aceitchecripto-backend
+    app: aceitchecripto-app
+  name: aceitchecripto-app
   namespace: default
 
 spec:
   replicas: 2  # Number of Pods to run in this deployment.  In this case 2 copies.
   selector:
     matchLabels:
-      app: aceitchecripto-backend # Name of the Pod template below that this deployment is managing.
+      app: aceitchecripto-app # Name of the Pod template below that this deployment is managing.
   template:
     metadata:
       labels:
-        app: aceitchecripto-backend  # Name of the Pod.  This name is important because our service will reference it.
+        app: aceitchecripto-app  # Name of the Pod.  This name is important because our service will reference it.
     spec:
       restartPolicy: Always
       containers:

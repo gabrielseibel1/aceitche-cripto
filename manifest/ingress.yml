@@ -1,39 +1,31 @@
 apiVersion: networking.k8s.io/v1
-kind: IngressClass
-metadata:
-  labels:
-    app.kubernetes.io/component: controller
-  name: nginx-ingress-class
-  annotations:
-    ingressclass.kubernetes.io/is-default-class: "true"
-spec:
-  controller: k8s.io/ingress-nginx
-
----
-
-apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: aceitchecripto-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
 spec:
-  ingressClassName: nginx-ingress-class
+  ingressClassName: alb
+  tls:
+    - hosts:
+        - aceitchecripto.com
+      secretName: aceitchecripto-tls-secret
   rules:
     - host: aceitchecripto.com
       http:
         paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: aceitchecripto-backend-service
-                port:
-                  name: http
           - path: /adminer
             pathType: Prefix
             backend:
               service:
                 name: aceitchecripto-adminer-service
+                port:
+                  name: http
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: aceitchecripto-app-service
                 port:
                   name: http
