@@ -8,6 +8,7 @@ metadata:
   namespace: default
 
 spec:
+  type: NodePort
   selector:
     app: aceitchecripto-psql # This references the name of the pod(s) this service will connect to.  If there is more than one replica the service will auto load balance.
   ports:
@@ -37,6 +38,10 @@ spec:
       labels:
         app: aceitchecripto-psql  # Name of the Pod.  This name is important because our service will reference it.
     spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 3000
+        fsGroup: 2000
       restartPolicy: Always
       containers:
         - name: aceitchecripto-psql
@@ -47,6 +52,8 @@ spec:
               name: psql-volume
               subPath: postgres
           env:
+            - name: PG_DATA
+              value: "/var/lib/postgresql/data/pgdata"
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:

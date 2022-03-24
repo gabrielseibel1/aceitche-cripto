@@ -18,24 +18,13 @@ metadata:
     storageclass.kubernetes.io/is-default-class: "true"
 
 provisioner: efs.csi.aws.com
-
----
-
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: aceitchecripto-psql-pv
-spec:
-  capacity:
-    storage: 20Gi
-  volumeMode: Filesystem
-  accessModes:
-    - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: aceitchecripto-psql-sc
-  csi:
-    driver: efs.csi.aws.com
-    volumeHandle: fs-0f25b40d52a5e06b7
+parameters:
+  provisioningMode: efs-ap
+  fileSystemId: fs-09f612b6c47a21a07
+  directoryPerms: "700"
+  gidRangeStart: "1000" # optional
+  gidRangeEnd: "2000" # optional
+  basePath: "/dynamic_provisioning" # optional
 
 ---
 

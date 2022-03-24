@@ -18,8 +18,9 @@ push :
 	docker push aceitchecripto/psql:latest
 
 cluster :
-	kubectl apply -f manifest/secret.yml
-	kubectl apply -f manifest
+	kubectl apply -f cluster/secret.yml
+	kubectl apply -f cluster/storage.yml
+	kubectl apply -f cluster
 
 clean :
-	kubectl delete -f manifest
+	kubectl delete -f cluster

@@ -3,14 +3,12 @@ kind: Ingress
 metadata:
   name: aceitchecripto-ingress
   annotations:
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/scheme: "internet-facing"
+    alb.ingress.kubernetes.io/target-type: "instance"
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:sa-east-1:066514095720:certificate/2c88ca77-eadb-4dff-bcc5-b97d0259e335
 spec:
   ingressClassName: alb
-  tls:
-    - hosts:
-        - aceitchecripto.com
-      secretName: aceitchecripto-tls-secret
   rules:
     - host: aceitchecripto.com
       http:
