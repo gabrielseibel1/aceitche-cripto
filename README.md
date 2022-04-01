@@ -7,9 +7,8 @@ A website to help people and businesses accept crypto payments, [aceitchecripto.
 If you're a developer running this project, you can build and install it as follows:
 
 ```
-make images
-make push.sh # cloud
-make minikube # local
-make cluster 
+make app
+make psql
+make cluster
 ```
 
