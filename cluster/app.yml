@@ -40,7 +40,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: aceitchecripto-app
-          image: aceitchecripto/app:latest  # Use this image to create our pods from.
+          image: aceitchecripto/app:v0.3.3 # Use this image to create our pods from.
           imagePullPolicy: IfNotPresent # The image by default will get pulled from Dockerhub if it is not local.
           env:
             - name: ADDRESS

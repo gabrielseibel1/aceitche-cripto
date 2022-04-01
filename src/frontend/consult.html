@@ -15,65 +15,96 @@
 
 <body>
 
-    <ul class="nav">
-        <li class="nav_li">
-            <a href="/">
-                <b><i>AceiTche</i></b>
+<ul class="nav">
+    <li class="nav_li" style="float: left">
+        <a href="/">
+            <b><i>AceiTche</i></b>
+        </a>
+    </li>
+    <!-- float: right makes order get reversed -->
+    <li class="nav_li">
+        <a href="/pay">
+            Login
+        </a>
+    </li>
+    <li class="nav_li">
+        <a href="https://pay.aceitchecripto.com/apps/4DRgUDbHc5tFNNE3H8MxpKQhwoMN/pos">
+            Loja
+        </a>
+    </li>
+    <li class="nav_li highlight">
+        <a href="consult.html">
+            Consultoria
+        </a>
+    </li>
+</ul>
+
+<div class="content center">
+    <p class="centertext">
+        Para agendar uma consultoria, entre em contato por qualquer um dos canais abaixo ou
+        preencha os campos do formulário para requisitar um horário.
+    </p>
+    <ul class="comm-channels centertext" style="">
+        <li>
+            <a href="tel:+5551996383319">
+                <img src="/img/signal.png" width="50px" height="50px">
             </a>
         </li>
-        <!-- float: right makes order get reversed -->
-        <li class="nav_li" style="float: right;">
-            <a href="pay">
-                Login
+        <li>
+            <a href="mailto:aceitche.cripto@gmail.com">
+                <img src="/img/gmail.svg" width="50px" height="50px">
             </a>
         </li>
-        <li class="nav_li highlight" style="float: right;">
-            <a href="consult.html">
-                Consultoria
+        <li>
+            <a href="https://instagram.com/aceitche_cripto">
+                <img src="/img/instagram.svg" width="50px" height="50px">
+            </a>
+        </li>
+        <li>
+            <a href="https://wa.me/5551996383319">
+                <img src="/img/whatsapp.svg" width="50px" height="50px">
+            </a>
+        </li>
+        <li>
+            <a href="https://t.me/gsseibel">
+                <img src="/img/telegram.svg" width="50px" height="50px">
+            </a>
+        </li>
+        <li>
+            <a href="https://matrix.to/#/@pistacchio:pimatrixconduit.xyz">
+                <img src="/img/matrix.svg" width="50px" height="50px">
             </a>
         </li>
     </ul>
+    <p class="centertext">
+        Tu também pode reservar o teu horário com <b>25% de desconto</b> se pagar adiantado em cripto pela
+        <a href="https://pay.aceitchecripto.com/apps/4DRgUDbHc5tFNNE3H8MxpKQhwoMN/pos">loja virtual</a>.
+    </p>
+    <p class="centertext">
+        Retornaremos seu contato por telefone ou email. A consultoria tem a duração média de uma hora e meia.
+    </p>
+    <form class="center" action="/api/free_time" method="post">
+        <label for="name">Nome:</label>
+        <input name="name" id="name" type="text" required>
 
-    <div class="content center">
-        <p>
-            Para agendar uma consultoria, entre em contato por qualquer um dos canais abaixo ou
-            preencha os campos do formulário para requisitar um horário.
-        </p>
-        <l class="comm-channels centertext">
-            <li>+55 51 996383319 (Signal)</li>
-            <li><a href="mailto:gabriel.seibel@tuta.io">gabriel.seibel@tuta.io</a></li>
-            <li><a href="https://instagram.com/aceitche_cripto">Instagram</a></li>
-            <li><a href="https://wa.me/5551996383319">WhatsApp</a></li>
-            <li><a href="https://t.me/gsseibel">Telegram</a></li>
-            <li><a href="https://matrix.to/#/@pistacchio:pimatrixconduit.xyz">Matrix</a></li>
-        </l>
-        <p>
-            Retornaremos seu contato por telefone ou email. A
-            consultoria
-            tem a duração média de uma hora.
-        </p>
-        <form class="center" action="/api/free_time" method="post">
-            <label for="name">Nome:</label>
-            <input name="name" id="name" type="text" required>
+        <label for="phone">Telefone:</label>
+        <input name="phone" id="phone" type="tel" required>
 
-            <label for="phone">Telefone:</label>
-            <input name="phone" id="phone" type="tel" required>
+        <label for="email">Email:</label>
+        <input name="email" id="email" type="email" required>
 
-            <label for="email">Email:</label>
-            <input name="email" id="email" type="email" required>
+        <label for="date">Data:</label>
+        <input name="date" id="date" type="date" required>
 
-            <label for="date">Data:</label>
-            <input name="date" id="date" type="date" required>
+        <label for="time">Horário:</label>
+        <input name="time" id="time" type="time" required>
 
-            <label for="time">Horário:</label>
-            <input name="time" id="time" type="time" required>
+        <label for="comment">Observação (objetivos, motivação etc.):</label>
+        <textarea name="comment" id="comment" rows="5"></textarea>
 
-            <label for="comment">Observação (objetivos, motivação etc.):</label>
-            <textarea name="comment" id="comment" rows="5"></textarea>
-
-            <input type="submit" value="Enviar">
-        </form>
-    </div>
+        <input type="submit" value="Enviar">
+    </form>
+</div>
 </body>
 
 </html>

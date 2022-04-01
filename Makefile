@@ -3,19 +3,15 @@ SHELL = /usr/bin/bash
 
 all : images push cluster
 
-local : images minikube cluster
+app :
+	docker build -t aceitchecripto/app:v0.3.3 .
+	docker push aceitchecripto/app:v0.3.3
+	kubectl apply -f cluster/app.yml
 
-images :
-	docker build -t aceitchecripto/app:latest .
-	docker build -t aceitchecripto/psql:latest ./sql
-
-minikube :
-	minikube image load aceitchecripto/app:latest
-	minikube image load aceitchecripto/psql:latest
-
-push :
-	docker push aceitchecripto/app:latest
-	docker push aceitchecripto/psql:latest
+psql :
+	docker build -t aceitchecripto/psql:v0.3.0 ./sql
+	docker push aceitchecripto/psql:v0.3.0
+	kubectl apply -f cluster/psql.yml
 
 cluster :
 	kubectl apply -f cluster/secret.yml
