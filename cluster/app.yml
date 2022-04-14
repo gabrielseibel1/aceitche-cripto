@@ -28,7 +28,7 @@ metadata:
   namespace: default
 
 spec:
-  replicas: 2  # Number of Pods to run in this deployment.  In this case 2 copies.
+  replicas: 1  # Number of Pods to run in this deployment.  In this case 1 copy.
   selector:
     matchLabels:
       app: aceitchecripto-app # Name of the Pod template below that this deployment is managing.
