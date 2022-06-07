@@ -28,7 +28,7 @@ h2,
 }
 
 .nav {
-    background-color: #4c4c4c;
+    background-color: #031040;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -51,11 +51,11 @@ h2,
 }
 
 .nav_li a:hover {
-    background-color: #f8931a;
+    background-color: #E55731;
 }
 
 .highlight {
-    background-color: #ff4f00;
+    background-color: #E55731;
 }
 
 .comm-channels {
